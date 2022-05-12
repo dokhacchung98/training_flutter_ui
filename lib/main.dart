@@ -1,9 +1,11 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:training_flutter_ui/network/base_client.dart';
-import 'package:training_flutter_ui/repositories/movie_repository.dart';
+import 'package:get/get.dart';
+import 'package:training_flutter_ui/binding/initial_binding.dart';
+import 'package:training_flutter_ui/controllers/home_controller.dart';
 import 'package:training_flutter_ui/router/route_config.dart';
+import 'package:training_flutter_ui/router/route_source.dart';
+import 'package:training_flutter_ui/ui/screen/main_screen/main_screen.dart';
 
 void main() {
   // runApp(
@@ -17,18 +19,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  BaseClient? _baseClient;
-  MovieRepository? _movieRepository;
-
-  MyApp({Key? key}) : super(key: key) {
-    _baseClient = BaseClient.instance;
-    _movieRepository = MovieRepositoryImpl(_baseClient!.client!);
-  }
-
-  // This widget is the root of your application.
+  HomeController vm = Get.put<HomeController>(HomeController());
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Movie Application',
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -37,9 +31,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      onGenerateRoute: RouteConfig.generateRoute,
-      initialRoute: RouteConfig.main,
-      // initialBinding: InitialBinding(),
+      initialRoute: RouterSource.main,
+      getPages: RouteConfig.getPages,
+      initialBinding: InitialBinding(),
+      home: MainScreen(),
     );
   }
 }

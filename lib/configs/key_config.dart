@@ -1,5 +1,5 @@
 class KeyConfig {
-  static const String keyMovieV3 = "dd75cf8d246c4faab9789f63f40b7daf";
+  static const String keyMovieV3 = "d6ab3e8da6e586442ae015dd5b3b61c4";
   static const String accessTokenMovieV4 =
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDc1Y2Y4ZDI0NmM0ZmFhYjk3ODlmNjNmNDBiN2RhZiIsInN1YiI6IjYyN2IzYWQ4YzhmODU4MDA5ZmI4OTc3ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XNdq82l9d6CknWM7s3gXc0KDNDzyZa6S9ldzngaYtbk";
+      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNmFiM2U4ZGE2ZTU4NjQ0MmFlMDE1ZGQ1YjNiNjFjNCIsInN1YiI6IjYyN2IzYWQ4YzhmODU4MDA5ZmI4OTc3ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.voyet7p-ZOINPjibRGOxTJiKLoQE0ZRJLAgUJA1QXBg";
 }

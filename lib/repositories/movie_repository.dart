@@ -1,19 +1,26 @@
-import 'package:http/http.dart';
-import 'package:training_flutter_ui/models/movie_trending_model.dart';
+import 'package:training_flutter_ui/models/movie_model.dart';
+import 'package:training_flutter_ui/network/movie_network.dart';
 
 abstract class MovieRepository {
-  final Client client;
+  final MovieNetwork movieNetwork;
 
-  MovieRepository(this.client);
+  MovieRepository(this.movieNetwork);
 
-  Future<List<MovieTrendingModel>> getListMoviesTrending();
+  Future<List<MovieModel>> getListMoviesTrending();
+
+  Future<List<MovieModel>> getListMoviesUpcoming();
 }
 
 class MovieRepositoryImpl extends MovieRepository {
-  MovieRepositoryImpl(Client client) : super(client);
+  MovieRepositoryImpl(MovieNetwork movieNetwork) : super(movieNetwork);
 
   @override
-  Future<List<MovieTrendingModel>> getListMoviesTrending() async {
-    throw UnimplementedError();
+  Future<List<MovieModel>> getListMoviesTrending() async {
+    return movieNetwork.getListMoviesTrending();
+  }
+
+  @override
+  Future<List<MovieModel>> getListMoviesUpcoming() async {
+    return movieNetwork.getListMoviesUpcoming();
   }
 }

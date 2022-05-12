@@ -1,5 +1,5 @@
-class MovieTrendingModel {
-  MovieTrendingModel({
+class MovieModel {
+  MovieModel({
     this.backdropPath,
     this.title,
     this.genreIds,
@@ -17,7 +17,7 @@ class MovieTrendingModel {
     this.mediaType,
   });
 
-  MovieTrendingModel.fromJson(dynamic json) {
+  MovieModel.fromJson(dynamic json) {
     backdropPath = json['backdrop_path'];
     title = json['title'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -41,7 +41,7 @@ class MovieTrendingModel {
   String? originalTitle;
   String? posterPath;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
   String? overview;
   String? releaseDate;
   int? voteCount;
@@ -49,7 +49,7 @@ class MovieTrendingModel {
   bool? adult;
   double? popularity;
   String? mediaType;
-  MovieTrendingModel copyWith({
+  MovieModel copyWith({
     String? backdropPath,
     String? title,
     List<int>? genreIds,
@@ -66,7 +66,7 @@ class MovieTrendingModel {
     double? popularity,
     String? mediaType,
   }) =>
-      MovieTrendingModel(
+      MovieModel(
         backdropPath: backdropPath ?? this.backdropPath,
         title: title ?? this.title,
         genreIds: genreIds ?? this.genreIds,
