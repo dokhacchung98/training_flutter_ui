@@ -18,8 +18,7 @@ class HomeController extends GetxController {
 
   Future getListMovieTrending() async {
     try {
-      MovieRepository _movieRepository =
-          Get.find<MovieRepositoryImpl>(tag: (MovieRepositoryImpl).toString());
+      MovieRepository _movieRepository = Get.find<MovieRepository>();
       isLoadingSlide.value = true;
       final res = await _movieRepository.getListMoviesTrending();
       listMovieTrending.addAll(res);
@@ -32,12 +31,10 @@ class HomeController extends GetxController {
 
   Future getListMovieUpcoming() async {
     try {
-      MovieRepository _movieRepository =
-          Get.find<MovieRepositoryImpl>(tag: (MovieRepositoryImpl).toString());
+      MovieRepository _movieRepository = Get.find<MovieRepository>();
       isLoadingUpcoming = true;
       update();
       final res = await _movieRepository.getListMoviesTrending();
-      print("IUUUUU ${res.length}");
       listMovieUpcoming = res;
       isLoadingUpcoming = false;
       update();

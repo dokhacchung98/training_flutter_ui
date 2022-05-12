@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:training_flutter_ui/common/app_image.dart';
+import 'package:training_flutter_ui/configs/url_config.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
 import 'package:training_flutter_ui/ui/components/custom_slide_indicator.dart';
 
@@ -15,7 +16,6 @@ class ListUpcomingWidget extends StatefulWidget {
 
 class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
   int _currentPageActive = 0;
-  final HomeController _homeController = Get.find<HomeController>();
 
   @override
   void initState() {
@@ -27,7 +27,6 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("SJKHJSKJS ${_homeController.listMovieUpcoming.length}");
     return GetBuilder<HomeController>(
       builder: (controller) => Column(children: [
         CarouselSlider(
@@ -39,7 +38,7 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
                   _currentPageActive = page;
                 });
               }),
-          items: _homeController.isLoadingUpcoming
+          items: controller.isLoadingUpcoming
               ? [1, 2, 3, 4, 5].map((i) {
                   return Builder(
                     builder: (BuildContext context) {
@@ -59,7 +58,7 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
                     },
                   );
                 }).toList()
-              : [1, 2, 3, 4, 5].map((i) {
+              : controller.listMovieUpcoming.map((item) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -67,8 +66,12 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
                         margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          image: const DecorationImage(
-                              image: AssetImage(AppImage.imgVideo),
+                          color: Colors.grey,
+                          image: DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                UrlConfig.baseUrlImg(item.posterPath!,
+                                    width: 500),
+                              ),
                               fit: BoxFit.fill),
                         ),
                       );
@@ -78,9 +81,9 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
         ),
         const SizedBox(height: 10),
         CustomSlideIndicator(
-            numberOfItem: _homeController.isLoadingUpcoming
+            numberOfItem: controller.isLoadingUpcoming
                 ? 5
-                : _homeController.listMovieUpcoming.length,
+                : controller.listMovieUpcoming.length,
             activePage: _currentPageActive),
       ]),
     );

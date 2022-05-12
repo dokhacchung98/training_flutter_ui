@@ -16,8 +16,7 @@ class ListMostPopularWidget extends StatefulWidget {
 
 class _ListMostPopularWidgetState extends State<ListMostPopularWidget> {
   int _currentPageActive = 0;
-  final HomeController _homeController =
-      Get.find(tag: (HomeController).toString());
+  final HomeController _homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
