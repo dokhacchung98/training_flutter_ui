@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_flutter_ui/ui/components/my_scafflod.dart';
+import 'package:training_flutter_ui/ui/components/my_scaffold.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

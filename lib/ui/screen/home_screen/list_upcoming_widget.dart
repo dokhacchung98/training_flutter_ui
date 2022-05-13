@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:training_flutter_ui/configs/url_config.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
+import 'package:training_flutter_ui/models/movie_model.dart';
 import 'package:training_flutter_ui/ui/components/custom_slide_indicator.dart';
 
 class ListUpcomingWidget extends StatefulWidget {
@@ -17,13 +18,9 @@ class ListUpcomingWidget extends StatefulWidget {
 class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
   int _currentPageActive = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _getListMovieTrending();
+  _goToDetailScreen(MovieModel item) {
+    Get.toNamed("/detail-screen/${item.id}");
   }
-
-  Future _getListMovieTrending() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +58,21 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
               : controller.listMovieUpcoming.map((item) {
                   return Builder(
                     builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey,
-                          image: DecorationImage(
-                              image: CachedNetworkImageProvider(
-                                UrlConfig.baseUrlImg(item.posterPath!,
-                                    width: 500),
-                              ),
-                              fit: BoxFit.fill),
+                      return GestureDetector(
+                        onTap: () => _goToDetailScreen(item),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.grey,
+                            image: DecorationImage(
+                                image: CachedNetworkImageProvider(
+                                  UrlConfig.baseUrlImg(item.posterPath!,
+                                      width: 500),
+                                ),
+                                fit: BoxFit.fill),
+                          ),
                         ),
                       );
                     },

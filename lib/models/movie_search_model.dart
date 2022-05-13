@@ -1,105 +1,99 @@
-class MovieModel {
-  MovieModel({
+class MovieSearchModel {
+  MovieSearchModel({
+    this.adult,
     this.backdropPath,
-    this.title,
     this.genreIds,
+    this.id,
     this.originalLanguage,
     this.originalTitle,
+    this.overview,
+    this.popularity,
     this.posterPath,
+    this.releaseDate,
+    this.title,
     this.video,
     this.voteAverage,
-    this.overview,
-    this.releaseDate,
     this.voteCount,
-    this.id,
-    this.adult,
-    this.popularity,
-    this.mediaType,
   });
 
-  MovieModel.fromJson(dynamic json) {
+  MovieSearchModel.fromJson(dynamic json) {
+    adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    title = json['title'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
+    id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
+    overview = json['overview'];
+    popularity = double.parse(json['popularity'].toString());
     posterPath = json['poster_path'];
+    releaseDate = json['release_date'];
+    title = json['title'];
     video = json['video'];
     voteAverage = double.parse(json['vote_average'].toString());
-    overview = json['overview'];
-    releaseDate = json['release_date'];
     voteCount = json['vote_count'];
-    id = json['id'];
-    adult = json['adult'];
-    popularity = double.parse(json['popularity'].toString());
-    mediaType = json['media_type'];
   }
+  bool? adult;
   String? backdropPath;
-  String? title;
   List<int>? genreIds;
+  int? id;
   String? originalLanguage;
   String? originalTitle;
+  String? overview;
+  double? popularity;
   String? posterPath;
+  String? releaseDate;
+  String? title;
   bool? video;
   double? voteAverage;
-  String? overview;
-  String? releaseDate;
   int? voteCount;
-  int? id;
-  bool? adult;
-  double? popularity;
-  String? mediaType;
-  MovieModel copyWith({
+  MovieSearchModel copyWith({
+    bool? adult,
     String? backdropPath,
-    String? title,
     List<int>? genreIds,
+    int? id,
     String? originalLanguage,
     String? originalTitle,
+    String? overview,
+    double? popularity,
     String? posterPath,
+    String? releaseDate,
+    String? title,
     bool? video,
     double? voteAverage,
-    String? overview,
-    String? releaseDate,
     int? voteCount,
-    int? id,
-    bool? adult,
-    double? popularity,
-    String? mediaType,
   }) =>
-      MovieModel(
+      MovieSearchModel(
+        adult: adult ?? this.adult,
         backdropPath: backdropPath ?? this.backdropPath,
-        title: title ?? this.title,
         genreIds: genreIds ?? this.genreIds,
+        id: id ?? this.id,
         originalLanguage: originalLanguage ?? this.originalLanguage,
         originalTitle: originalTitle ?? this.originalTitle,
+        overview: overview ?? this.overview,
+        popularity: popularity ?? this.popularity,
         posterPath: posterPath ?? this.posterPath,
+        releaseDate: releaseDate ?? this.releaseDate,
+        title: title ?? this.title,
         video: video ?? this.video,
         voteAverage: voteAverage ?? this.voteAverage,
-        overview: overview ?? this.overview,
-        releaseDate: releaseDate ?? this.releaseDate,
         voteCount: voteCount ?? this.voteCount,
-        id: id ?? this.id,
-        adult: adult ?? this.adult,
-        popularity: popularity ?? this.popularity,
-        mediaType: mediaType ?? this.mediaType,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['adult'] = adult;
     map['backdrop_path'] = backdropPath;
-    map['title'] = title;
     map['genre_ids'] = genreIds;
+    map['id'] = id;
     map['original_language'] = originalLanguage;
     map['original_title'] = originalTitle;
+    map['overview'] = overview;
+    map['popularity'] = popularity;
     map['poster_path'] = posterPath;
+    map['release_date'] = releaseDate;
+    map['title'] = title;
     map['video'] = video;
     map['vote_average'] = voteAverage;
-    map['overview'] = overview;
-    map['release_date'] = releaseDate;
     map['vote_count'] = voteCount;
-    map['id'] = id;
-    map['adult'] = adult;
-    map['popularity'] = popularity;
-    map['media_type'] = mediaType;
     return map;
   }
 }

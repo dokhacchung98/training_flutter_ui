@@ -3,7 +3,7 @@ import 'package:training_flutter_ui/common/app_image.dart';
 import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
-import 'package:training_flutter_ui/ui/components/my_scafflod.dart';
+import 'package:training_flutter_ui/ui/components/my_scaffold.dart';
 import 'package:training_flutter_ui/ui/screen/account_screen/acount_screen.dart';
 import 'package:training_flutter_ui/ui/screen/favorite_screen/favorite_screen.dart';
 import 'package:training_flutter_ui/ui/screen/home_screen/home_screen.dart';

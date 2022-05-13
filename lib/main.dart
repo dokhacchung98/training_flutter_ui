@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
 import 'package:training_flutter_ui/network/base_client.dart';
 import 'package:training_flutter_ui/network/movie_network.dart';
@@ -18,7 +19,9 @@ void main() async {
   // );
   await Get.putAsync(() => MovieNetwork().init(BaseClient.instance.client!));
   await Get.putAsync(() => MovieRepository().init());
-  Get.put(HomeController());
+  Get.put<AppController>(AppController());
+  Get.put<HomeController>(HomeController());
+  // Get.put(DetailController());
   runApp(const MyApp());
 }
 

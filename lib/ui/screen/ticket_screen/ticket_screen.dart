@@ -15,6 +15,15 @@ class TicketScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 50),
             child: Text('Ticket', style: StyleText.styleTextTitleHome),
           ),
+          Expanded(
+            child: Center(
+              child: Text(
+                'The feature is upgrading',
+                style: StyleText.styleTextCategory,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          )
         ],
       ),
     );

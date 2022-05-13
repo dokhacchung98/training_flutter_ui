@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/common/app_image.dart';
 import 'package:training_flutter_ui/common/color_constant.dart';
+import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
@@ -11,6 +12,16 @@ import 'package:training_flutter_ui/ui/screen/home_screen/list_upcoming_widget.d
 
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
+
+  _showDialog(String mes) {
+    AppController _appController = Get.find<AppController>();
+    _appController.showDialog(mes);
+  }
+
+  _onSearch(String value) {
+    HomeController _homeController = Get.find<HomeController>();
+    _homeController.goToSearchMovieScreen(value.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +50,13 @@ class HomeScreen extends GetWidget<HomeController> {
                           ),
                         ),
                       ),
-                      Image.asset(
-                        AppImage.iconBell,
-                        width: 24,
-                        height: 24,
+                      GestureDetector(
+                        onTap: () => _showDialog("Notification"),
+                        child: Image.asset(
+                          AppImage.iconBell,
+                          width: 24,
+                          height: 24,
+                        ),
                       ),
                     ],
                   ),
@@ -71,10 +85,12 @@ class HomeScreen extends GetWidget<HomeController> {
                           height: 22,
                         ),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: TextField(
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: _onSearch,
                           style: StyleText.styleTextSearch,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               hoverColor: ColorConstant.colorWhite50,
                               border: InputBorder.none,
                               hintText: 'Search',
@@ -87,10 +103,13 @@ class HomeScreen extends GetWidget<HomeController> {
                         color: Colors.white.withOpacity(0.5),
                         margin: const EdgeInsets.symmetric(horizontal: 12),
                       ),
-                      Image.asset(
-                        AppImage.iconMic,
-                        width: 22,
-                        height: 22,
+                      GestureDetector(
+                        onTap: () => _showDialog("speech to text"),
+                        child: Image.asset(
+                          AppImage.iconMic,
+                          width: 22,
+                          height: 22,
+                        ),
                       ),
                     ],
                   ),

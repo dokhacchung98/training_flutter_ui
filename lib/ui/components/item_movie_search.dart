@@ -2,19 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/configs/url_config.dart';
-import 'package:training_flutter_ui/models/movie_favorite_model.dart';
+import 'package:training_flutter_ui/models/movie_search_model.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 import 'package:training_flutter_ui/ui/components/score_widget.dart';
 import 'package:training_flutter_ui/utils/handle_time_util.dart';
 
-class ItemMovie extends StatelessWidget {
-  const ItemMovie({Key? key, required this.favoriteModel}) : super(key: key);
+class ItemMovieSearch extends StatelessWidget {
+  const ItemMovieSearch({Key? key, required this.searchModel})
+      : super(key: key);
 
-  final MovieFavoriteModel favoriteModel;
+  final MovieSearchModel searchModel;
 
   _goToDetailMovie() {
-    Get.toNamed("/detail-screen/${favoriteModel.id}");
+    Get.toNamed("/detail-screen/${searchModel.id}");
   }
 
   @override
@@ -26,7 +27,10 @@ class ItemMovie extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: CachedNetworkImageProvider(
-                UrlConfig.baseUrlImg(favoriteModel.posterPath!, width: 500),
+                UrlConfig.baseUrlImg(
+                    searchModel.posterPath ??
+                        '/6uChT8jRjTwcVo4X5pIUctsl1qN.jpg',
+                    width: 500),
               ),
               fit: BoxFit.fill),
           borderRadius: BorderRadius.circular(30),
@@ -51,7 +55,7 @@ class ItemMovie extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: ScoreWidget(
-                  score: favoriteModel.voteAverage!,
+                  score: searchModel.voteAverage!,
                 ),
               ),
               Align(
@@ -61,11 +65,11 @@ class ItemMovie extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          '${HandleTimeUtil.handleYearRelease(favoriteModel.releaseDate ?? '2022')} \n',
+                          '${HandleTimeUtil.handleYearRelease(searchModel.releaseDate ?? '2022-01-01')} \n',
                       style: StyleText.styleTextGeneres,
                     ),
                     TextSpan(
-                      text: favoriteModel.title ?? '',
+                      text: searchModel.title ?? '',
                       style: StyleText.styleDescription,
                     )
                   ],

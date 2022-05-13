@@ -4,7 +4,9 @@ class UrlConfig {
 
   static const String getListTrending = "/movie/popular";
   static const String getListUpcoming = "/movie/upcoming";
+  static const String getDetailMovie = "/movie/";
   static const String getListWeekSuggest = "/trending/movie/week";
+  static const String searchMovie = "/search/movie";
 
   static String baseUrlImg(String path, {int width = 500}) {
     return "https://image.tmdb.org/t/p/w$width$path";

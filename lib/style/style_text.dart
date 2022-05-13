@@ -69,7 +69,7 @@ class StyleText {
       color: ColorConstant.colorBlack);
 
   static const styleTextNameMovieLarge = TextStyle(
-      fontSize: 64,
+      fontSize: 54,
       fontFamily: 'BeVNPro',
       fontWeight: FontWeight.w600,
       color: ColorConstant.colorWhite100);

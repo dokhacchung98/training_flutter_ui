@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/configs/url_config.dart';
 import 'package:training_flutter_ui/models/movie_model.dart';
@@ -12,62 +13,71 @@ class ItemMovieSlide extends StatelessWidget {
 
   final MovieModel movieTrendingModel;
 
+  _goToMovieDetail() {
+    Get.toNamed("/detail-screen/${movieTrendingModel.id}");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 120,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: Colors.grey,
-        image: DecorationImage(
-            image: CachedNetworkImageProvider(
-              UrlConfig.baseUrlImg(movieTrendingModel.backdropPath!,
-                  width: 500),
-            ),
-            fit: BoxFit.fill),
-      ),
+    return GestureDetector(
+      onTap: _goToMovieDetail,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
+        width: MediaQuery.of(context).size.width,
+        height: 120,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          gradient: StyleGradient.gradientBackgroundItemSlide,
-        ),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text(
-                  movieTrendingModel.title ?? '',
-                  style: StyleText.styleTextMovieSlide,
-                ),
+          color: Colors.grey,
+          image: DecorationImage(
+              image: CachedNetworkImageProvider(
+                UrlConfig.baseUrlImg(movieTrendingModel.backdropPath!,
+                    width: 500),
               ),
-              Container(
-                height: 14,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: ColorConstant.colorYellow,
+              fit: BoxFit.fill),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            gradient: StyleGradient.gradientBackgroundItemSlide,
+          ),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    movieTrendingModel.title ?? '',
+                    maxLines: 3,
+                    style: StyleText.styleTextMovieSlide,
+                  ),
                 ),
-                child: Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'IMDb  ',
-                      style: StyleText.styleTextIMDb,
-                      children: [
-                        TextSpan(
-                            text: '${movieTrendingModel.voteAverage ?? '5.0'}',
-                            style: StyleText.styleTextIMDbScore)
-                      ],
+                Container(
+                  height: 14,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: ColorConstant.colorYellow,
+                  ),
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'IMDb  ',
+                        style: StyleText.styleTextIMDb,
+                        children: [
+                          TextSpan(
+                              text:
+                                  '${movieTrendingModel.voteAverage ?? '5.0'}',
+                              style: StyleText.styleTextIMDbScore)
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

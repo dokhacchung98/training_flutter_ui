@@ -30,6 +30,7 @@ class _ListMostPopularWidgetState extends State<ListMostPopularWidget> {
               height: 120.0,
               viewportFraction: _viewPortFraction,
               enlargeCenterPage: true,
+              autoPlay: true,
               onPageChanged: (page, _) {
                 setState(() {
                   _currentPageActive = page;
