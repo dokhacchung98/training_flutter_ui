@@ -51,7 +51,6 @@ class StyleGradient {
     colors: [
       ColorConstant.colorShadow1,
       ColorConstant.colorShadow2,
-      Colors.transparent,
     ],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
@@ -70,6 +69,16 @@ class StyleGradient {
     colors: [
       ColorConstant.colorShadowSlide1,
       ColorConstant.colorShadowSlide2,
+      Colors.transparent,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+  );
+
+  static final gradientInput = LinearGradient(
+    colors: [
+      ColorConstant.colorInput1.withOpacity(0.3),
+      ColorConstant.colorInput2.withOpacity(0.3),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topCenter,

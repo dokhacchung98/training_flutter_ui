@@ -23,13 +23,13 @@ class ItemGeneres extends StatelessWidget {
         width: _widthItemGeneres,
         decoration: BoxDecoration(
           gradient: StyleGradient.gradientBackgroundGenres,
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
           border: Border.all(width: 1, color: Colors.white24),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 18),
+            const SizedBox(height: 15),
             SizedBox(
               width: _widthItemGeneres! * 0.5,
               height: _widthItemGeneres! * 0.5,

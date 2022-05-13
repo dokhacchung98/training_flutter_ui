@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
@@ -11,18 +12,18 @@ import 'package:training_flutter_ui/router/route_source.dart';
 import 'package:training_flutter_ui/ui/screen/main_screen/main_screen.dart';
 
 void main() async {
-  // runApp(
-  //   DevicePreview(
-  //     enabled: !kReleaseMode,
-  //     builder: (context) => MyApp(), // Wrap your app
-  //   ),
-  // );
   await Get.putAsync(() => MovieNetwork().init(BaseClient.instance.client!));
   await Get.putAsync(() => MovieRepository().init());
   Get.put<AppController>(AppController());
   Get.put<HomeController>(HomeController());
   // Get.put(DetailController());
   runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {

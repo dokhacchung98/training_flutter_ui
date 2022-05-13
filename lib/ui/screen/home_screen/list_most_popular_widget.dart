@@ -20,14 +20,14 @@ class _ListMostPopularWidgetState extends State<ListMostPopularWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final _viewPortFraction = (MediaQuery.of(context).size.width - 96) /
+    final _viewPortFraction = (MediaQuery.of(context).size.width - 90) /
         MediaQuery.of(context).size.width;
 
     return Obx(
       () => Column(children: [
         CarouselSlider(
           options: CarouselOptions(
-              height: 120.0,
+              height: 130.0,
               viewportFraction: _viewPortFraction,
               enlargeCenterPage: true,
               autoPlay: true,
@@ -44,7 +44,7 @@ class _ListMostPopularWidgetState extends State<ListMostPopularWidget> {
                         baseColor: Colors.grey.shade300,
                         highlightColor: Colors.grey.shade500,
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          margin: const EdgeInsets.symmetric(horizontal: 0),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
@@ -56,11 +56,15 @@ class _ListMostPopularWidgetState extends State<ListMostPopularWidget> {
                     },
                   );
                 }).toList()
-              : _homeController.listMovieTrending.value.map((item) {
+              : _homeController.listMovieTrending.map((item) {
                   return Builder(
                     builder: (BuildContext context) {
                       return ItemMovieSlide(
                         movieTrendingModel: item as MovieModel,
+                        currentIndex:
+                            _homeController.listMovieTrending.indexOf(item),
+                        pageIndex: _currentPageActive,
+                        lengthList: _homeController.listMovieTrending.length,
                       );
                     },
                   );

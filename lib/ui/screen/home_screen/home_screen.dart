@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/common/app_image.dart';
-import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
@@ -25,16 +24,16 @@ class HomeScreen extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SafeArea(
-          bottom: false,
+    return SafeArea(
+      bottom: false,
+      child: SizedBox(
+          height: double.infinity,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 42),
                   child: Row(
                     children: [
                       Expanded(
@@ -62,16 +61,17 @@ class HomeScreen extends GetWidget<HomeController> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 10, right: 50, left: 50),
-                  padding: const EdgeInsets.symmetric(horizontal: 14),
-                  height: 50,
+                  margin: const EdgeInsets.only(top: 10, right: 44, left: 42),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 0),
+                  height: 42,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    gradient: StyleGradient.gradientInput,
                     border: Border.all(
                       width: 1,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.white24,
                     ),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,34 +81,37 @@ class HomeScreen extends GetWidget<HomeController> {
                         padding: const EdgeInsets.only(right: 12),
                         child: Image.asset(
                           AppImage.iconSearch,
-                          width: 22,
-                          height: 22,
+                          width: 20,
+                          height: 20,
                         ),
                       ),
                       Expanded(
-                        child: TextField(
-                          textInputAction: TextInputAction.search,
-                          onSubmitted: _onSearch,
-                          style: StyleText.styleTextSearch,
-                          decoration: const InputDecoration(
-                              hoverColor: ColorConstant.colorWhite50,
-                              border: InputBorder.none,
-                              hintText: 'Search',
-                              hintStyle: StyleText.styleTextSearchHint),
+                        child: SizedBox(
+                          height: 42,
+                          child: TextField(
+                            textInputAction: TextInputAction.search,
+                            onSubmitted: _onSearch,
+                            style: StyleText.styleTextSearch,
+                            decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Search',
+                                hintStyle: StyleText.styleTextSearchHint),
+                          ),
                         ),
                       ),
                       Container(
                         width: 1,
                         height: 40,
-                        color: Colors.white.withOpacity(0.5),
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
+                        color: Colors.white24,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                       ),
                       GestureDetector(
                         onTap: () => _showDialog("speech to text"),
                         child: Image.asset(
                           AppImage.iconMic,
-                          width: 22,
-                          height: 22,
+                          width: 20,
+                          height: 20,
                         ),
                       ),
                     ],
@@ -116,7 +119,7 @@ class HomeScreen extends GetWidget<HomeController> {
                 ),
                 const Padding(
                   padding:
-                      EdgeInsets.only(left: 50, right: 50, top: 16, bottom: 12),
+                      EdgeInsets.only(left: 42, right: 42, top: 16, bottom: 12),
                   child:
                       Text('Most popular', style: StyleText.styleTextTitleHome),
                 ),
@@ -124,7 +127,7 @@ class HomeScreen extends GetWidget<HomeController> {
                 const SizedBox(height: 12),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 42, vertical: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -138,7 +141,7 @@ class HomeScreen extends GetWidget<HomeController> {
                 ),
                 const Padding(
                   padding:
-                      EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 12),
+                      EdgeInsets.only(left: 42, right: 42, top: 20, bottom: 12),
                   child: Text('Upcoming releases',
                       style: StyleText.styleTextTitleHome),
                 ),
@@ -146,30 +149,7 @@ class HomeScreen extends GetWidget<HomeController> {
                 const SizedBox(height: 12),
               ],
             ),
-          ),
-        ),
-        IgnorePointer(
-          ignoring: true,
-          child: Container(
-            width: 40,
-            // height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-                gradient: StyleGradient.gradientBackgroundShadowLeft),
-          ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: IgnorePointer(
-            ignoring: true,
-            child: Container(
-              width: 40,
-              // height: 210,
-              decoration: const BoxDecoration(
-                  gradient: StyleGradient.gradientBackgroundShadowRight),
-            ),
-          ),
-        )
-      ],
+          )),
     );
   }
 }

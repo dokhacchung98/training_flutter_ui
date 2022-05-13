@@ -8,10 +8,18 @@ import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 
 class ItemMovieSlide extends StatelessWidget {
-  const ItemMovieSlide({Key? key, required this.movieTrendingModel})
-      : super(key: key);
+  const ItemMovieSlide({
+    Key? key,
+    required this.movieTrendingModel,
+    required this.currentIndex,
+    required this.pageIndex,
+    required this.lengthList,
+  }) : super(key: key);
 
   final MovieModel movieTrendingModel;
+  final int currentIndex;
+  final int pageIndex;
+  final int lengthList;
 
   _goToMovieDetail() {
     Get.toNamed("/detail-screen/${movieTrendingModel.id}");
@@ -23,23 +31,42 @@ class ItemMovieSlide extends StatelessWidget {
       onTap: _goToMovieDetail,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 120,
-        margin: const EdgeInsets.symmetric(horizontal: 4),
+        height: 128,
+        margin: const EdgeInsets.symmetric(horizontal: 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 1), // changes position of shadow
+            ),
+          ],
           color: Colors.grey,
           image: DecorationImage(
               image: CachedNetworkImageProvider(
                 UrlConfig.baseUrlImg(movieTrendingModel.backdropPath!,
                     width: 500),
               ),
+              colorFilter: currentIndex == pageIndex
+                  ? null
+                  : ColorFilter.mode(
+                      Colors.black.withOpacity(0.5), BlendMode.dstATop),
               fit: BoxFit.fill),
         ),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            gradient: StyleGradient.gradientBackgroundItemSlide,
+            gradient: currentIndex == pageIndex
+                ? StyleGradient.gradientBackgroundItemSlide
+                : (currentIndex < pageIndex && pageIndex != (lengthList - 1)) ||
+                        (currentIndex == (lengthList - 1) && pageIndex == 0) ||
+                        (pageIndex == (lengthList - 1) &&
+                            pageIndex - currentIndex == 1)
+                    ? StyleGradient.gradientBackgroundShadowLeft
+                    : StyleGradient.gradientBackgroundShadowRight,
           ),
           child: Align(
             alignment: Alignment.bottomCenter,

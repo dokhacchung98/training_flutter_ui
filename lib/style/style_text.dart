@@ -9,13 +9,13 @@ class StyleText {
       color: ColorConstant.colorWhite100);
 
   static const styleTextSearch = TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: 'BeVNPro',
       fontWeight: FontWeight.w400,
       color: ColorConstant.colorWhite100);
 
   static const styleTextSearchHint = TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: 'BeVNPro',
       fontWeight: FontWeight.w400,
       color: ColorConstant.colorWhite50);
@@ -27,7 +27,7 @@ class StyleText {
       color: ColorConstant.colorWhite100);
 
   static const styleTextTitleHome = TextStyle(
-      fontSize: 20,
+      fontSize: 18,
       fontFamily: 'BeVNPro',
       fontWeight: FontWeight.w700,
       color: ColorConstant.colorWhite100);

@@ -18,4 +18,6 @@ class ColorConstant {
   static const Color colorShadow2 = Color(0x1A826EC8);
   static const Color colorShadowSlide1 = Color(0xFF121212);
   static const Color colorShadowSlide2 = Color(0x00121212);
+  static const Color colorInput1 = Color(0xFF6B66A6);
+  static const Color colorInput2 = Color(0xFF75D1DD);
 }
