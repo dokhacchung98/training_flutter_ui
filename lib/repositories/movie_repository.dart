@@ -10,9 +10,9 @@ class MovieRepository extends GetxService {
     return this;
   }
 
-  Future<List<MovieModel>> getListMoviesTrending() async {
+  Future<List<MovieModel>> getListMoviesTrending(String lang) async {
     MovieNetwork movieNetwork = Get.find<MovieNetwork>();
-    return movieNetwork.getListMoviesTrending();
+    return movieNetwork.getListMoviesTrending(lang);
   }
 
   Future<List<MovieModel>> getListMoviesUpcoming() async {
@@ -20,9 +20,9 @@ class MovieRepository extends GetxService {
     return movieNetwork.getListMoviesUpcoming();
   }
 
-  Future<MovieDetailModel> getDetailMovie(int id) async {
+  Future<MovieDetailModel> getDetailMovie(int id, String lang) async {
     MovieNetwork movieNetwork = Get.find<MovieNetwork>();
-    return movieNetwork.getDetailMovie(id);
+    return movieNetwork.getDetailMovie(id, lang);
   }
 
   Future addToFavorite(int accountId, String sessionId, String mediaType,
@@ -33,9 +33,9 @@ class MovieRepository extends GetxService {
   }
 
   Future<List<MovieFavoriteModel>> getListMovieFavorite(
-      int accountId, String sessionId) async {
+      int accountId, String sessionId, String lang) async {
     MovieNetwork movieNetwork = Get.find<MovieNetwork>();
-    return movieNetwork.getListMovieFavorite(accountId, sessionId);
+    return movieNetwork.getListMovieFavorite(accountId, sessionId, lang);
   }
 
   Future<PagingMovieSearchModel> searchMovie(String keyword, int page) async {

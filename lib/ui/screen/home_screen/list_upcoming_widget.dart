@@ -126,9 +126,6 @@ class _ListUpcomingWidgetState extends State<ListUpcomingWidget> {
                                           : StyleGradient
                                               .gradientBackgroundShadowRight,
                                 ),
-                                child: Center(
-                                    child: Text(
-                                        '${controller.listMovieUpcoming.indexOf(item)}')),
                               ),
                             ),
                           );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 import 'package:training_flutter_ui/ui/components/item_movie.dart';
 
@@ -14,9 +15,10 @@ class FavoriteScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            child: Text('Favorite', style: StyleText.styleTextTitleHome),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Text(S.of(context).bottom_tab_favorite,
+                style: StyleText.styleTextTitleHome),
           ),
           const SizedBox(height: 8),
           GetBuilder<AppController>(
@@ -24,8 +26,8 @@ class FavoriteScreen extends StatelessWidget {
               child: _appController.listMovieFavorite.isEmpty
                   ? SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: const Text(
-                        'List empty',
+                      child: Text(
+                        S.of(context).list_empty,
                         style: StyleText.styleTextCategory,
                         textAlign: TextAlign.center,
                       ),

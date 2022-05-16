@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 
 class TicketScreen extends StatelessWidget {
@@ -10,15 +11,16 @@ class TicketScreen extends StatelessWidget {
       bottom: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            child: Text('Ticket', style: StyleText.styleTextTitleHome),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Text(S.of(context).bottom_tab_ticket,
+                style: StyleText.styleTextTitleHome),
           ),
           Expanded(
             child: Center(
               child: Text(
-                'The feature is upgrading',
+                S.of(context).upgrading,
                 style: StyleText.styleTextCategory,
                 textAlign: TextAlign.center,
               ),

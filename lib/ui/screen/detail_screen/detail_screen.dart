@@ -8,6 +8,7 @@ import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/configs/url_config.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/controllers/detail_controller.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/models/movie_detail_model.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
@@ -128,6 +129,7 @@ class DetailScreen extends GetWidget<DetailController> {
                                             _detailController.firstName.value,
                                             style: StyleText
                                                 .styleTextNameMovieLarge,
+                                            textAlign: TextAlign.center,
                                           ),
                                     controller.lastName.value.isEmpty
                                         ? const SizedBox()
@@ -135,6 +137,7 @@ class DetailScreen extends GetWidget<DetailController> {
                                             _detailController.lastName.value,
                                             style: StyleText
                                                 .styleTextNameMovieMedium,
+                                            textAlign: TextAlign.center,
                                           ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -279,10 +282,10 @@ class DetailScreen extends GetWidget<DetailController> {
                                                   text: controller
                                                       .description.value),
                                               TextSpan(
-                                                text:
-                                                    controller.isShowMore.value
-                                                        ? "More"
-                                                        : '',
+                                                text: controller
+                                                        .isShowMore.value
+                                                    ? S.of(context).detail_more
+                                                    : '',
                                                 style: StyleText
                                                     .styleDescriptionMore,
                                                 recognizer:

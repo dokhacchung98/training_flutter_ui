@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 
@@ -17,9 +18,10 @@ class ItemGeneres extends StatelessWidget {
     _widthItemGeneres ??= (MediaQuery.of(context).size.width - 140) / 4;
     return GestureDetector(
       onTap: () {
-        Get.find<AppController>().showDialog("The feature is upgrading");
+        Get.find<AppController>().showDialog(S.of(context).upgrading);
       },
       child: Container(
+        height: 90,
         width: _widthItemGeneres,
         decoration: BoxDecoration(
           gradient: StyleGradient.gradientBackgroundGenres,
@@ -29,7 +31,6 @@ class ItemGeneres extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 15),
             SizedBox(
               width: _widthItemGeneres! * 0.5,
               height: _widthItemGeneres! * 0.5,
@@ -39,8 +40,8 @@ class ItemGeneres extends StatelessWidget {
             Text(
               title,
               style: StyleText.styleTextGeneres,
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 18),
           ],
         ),
       ),

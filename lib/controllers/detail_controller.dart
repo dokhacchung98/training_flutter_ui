@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:training_flutter_ui/bloc/l10n_cubit.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/models/movie_detail_model.dart';
 import 'package:training_flutter_ui/repositories/movie_repository.dart';
@@ -36,9 +38,11 @@ class DetailController extends GetxController {
 
   Future getDetailMovie(int id) async {
     try {
+      String lang =
+          BlocProvider.of<L10nCubit>(Get.context!).state.currentLanguage;
       MovieRepository _movieRepository = Get.find<MovieRepository>();
       isLoading.value = true;
-      final res = await _movieRepository.getDetailMovie(id);
+      final res = await _movieRepository.getDetailMovie(id, lang);
       movieDetailModel.value = res;
       String name = movieDetailModel.value!.title!;
       List<String> names = name.split(" ");

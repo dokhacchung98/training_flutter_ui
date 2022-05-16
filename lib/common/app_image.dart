@@ -3,12 +3,13 @@ class AppImage {
   static const iconAccount = 'assets/icons/icon_account.png';
   static const iconHeart = 'assets/icons/icon_heart.png';
   static const iconHome = 'assets/icons/icon_home.png';
-  static const iconSearch = 'assets/icons/icon_search.png';
   static const iconShare = 'assets/icons/icon_share.png';
   static const iconShuffle = 'assets/icons/icon_shuffle.png';
   static const iconTicket = 'assets/icons/icon_ticket.png';
   static const iconMic = 'assets/icons/icon_mic.png';
   static const iconBack = 'assets/icons/icon_back.png';
+  static const iconUK = 'assets/icons/icon_uk.png';
+  static const iconVN = 'assets/icons/icon_vn.png';
 
   static const imgActor = 'assets/images/img_actor.png';
   static const imgGeneres = 'assets/images/img_generes.png';

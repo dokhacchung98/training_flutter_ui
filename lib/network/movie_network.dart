@@ -17,9 +17,9 @@ class MovieNetwork extends GetxService {
     return this;
   }
 
-  Future<List<MovieModel>> getListMoviesTrending() async {
+  Future<List<MovieModel>> getListMoviesTrending(String lang) async {
     final response = await client!.get(Uri.parse(
-        "${UrlConfig.baseUrlV3}${UrlConfig.getListTrending}?api_key=${KeyConfig.keyMovieV3}"));
+        "${UrlConfig.baseUrlV3}${UrlConfig.getListTrending}?api_key=${KeyConfig.keyMovieV3}&language=$lang"));
     if (response.statusCode != 200) {
       throw "getListMoviesTrending error";
     }
@@ -41,9 +41,9 @@ class MovieNetwork extends GetxService {
     return _result;
   }
 
-  Future<MovieDetailModel> getDetailMovie(int id) async {
+  Future<MovieDetailModel> getDetailMovie(int id, String lang) async {
     final response = await client!.get(Uri.parse(
-        "${UrlConfig.baseUrlV3}${UrlConfig.getDetailMovie}$id?api_key=${KeyConfig.keyMovieV3}"));
+        "${UrlConfig.baseUrlV3}${UrlConfig.getDetailMovie}$id?api_key=${KeyConfig.keyMovieV3}&language=$lang"));
     if (response.statusCode != 200) {
       throw "getDetailMovie error";
     }
@@ -72,9 +72,9 @@ class MovieNetwork extends GetxService {
   }
 
   Future<List<MovieFavoriteModel>> getListMovieFavorite(
-      int accountId, String sessionId) async {
+      int accountId, String sessionId, String lang) async {
     final response = await client!.get(Uri.parse(
-        "${UrlConfig.baseUrlV3}/account/$accountId}/favorite/movies?api_key=${KeyConfig.keyMovieV3}&session_id=$sessionId"));
+        "${UrlConfig.baseUrlV3}/account/$accountId}/favorite/movies?api_key=${KeyConfig.keyMovieV3}&session_id=$sessionId&language=$lang"));
     if (response.statusCode != 200) {
       throw "getDetailMovie error";
     }

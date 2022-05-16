@@ -1,6 +1,12 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:training_flutter_ui/bloc/l10n_cubit.dart';
 import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/configs/key_config.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/models/movie_favorite_model.dart';
 import 'package:training_flutter_ui/repositories/movie_repository.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
@@ -13,11 +19,21 @@ class AppController extends GetxController {
 
   bool isLoadingGetFavorite = false;
   List<MovieFavoriteModel> listMovieFavorite = [];
+  late StreamSubscription _streamSubscription;
 
   @override
   void onInit() {
     getListFavorite();
     super.onInit();
+    _streamSubscription = BlocProvider.of<L10nCubit>(Get.context!)
+        .stream
+        .listen((_) => getListFavorite());
+  }
+
+  @override
+  void onClose() {
+    _streamSubscription.cancel();
+    super.onClose();
   }
 
   void showSnackError(String message) {
@@ -33,14 +49,16 @@ class AppController extends GetxController {
       isSendFavorite.value = true;
       await _movieRepository.addToFavorite(
           userId.value, sessionId.value, "movie", mediaId, favorite);
-      Get.snackbar(
-          "Success", "${favorite ? 'add' : 'remove'} to favorite successful");
+      showSnackError(favorite
+          ? S.of(Get.context!).add_favorite_ss
+          : S.of(Get.context!).remove_favorite_ss);
       isSendFavorite.value = false;
       getListFavorite();
     } catch (err) {
       isSendFavorite.value = false;
-      showSnackError(
-          "${favorite ? 'add' : 'remove'} to favorite error, please try again!");
+      showSnackError(favorite
+          ? S.of(Get.context!).add_favorite_er
+          : S.of(Get.context!).remove_favorite_er);
       print("AppController addToFavorite error ${err}");
     }
   }
@@ -51,15 +69,19 @@ class AppController extends GetxController {
       MovieRepository _movieRepository = Get.find<MovieRepository>();
       isLoadingGetFavorite = true;
       update();
-      List<MovieFavoriteModel> _res = await _movieRepository
-          .getListMovieFavorite(userId.value, sessionId.value);
+      Locale? currentLocale = Get.locale;
+      List<MovieFavoriteModel> _res =
+          await _movieRepository.getListMovieFavorite(
+              userId.value,
+              sessionId.value,
+              currentLocale == null ? 'vi' : currentLocale.languageCode);
       listMovieFavorite = _res;
       isLoadingGetFavorite = false;
       update();
     } catch (err) {
       isLoadingGetFavorite = false;
       update();
-      showSnackError("Get list movie favorite error, please try again!");
+      showSnackError(S.of(Get.context!).favorite_fetch_er);
       print("AppController getListFavorite error ${err}");
     }
   }

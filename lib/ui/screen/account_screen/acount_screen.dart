@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -10,15 +11,16 @@ class AccountScreen extends StatelessWidget {
       bottom: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            child: Text('Account', style: StyleText.styleTextTitleHome),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Text(S.of(context).bottom_tab_account,
+                style: StyleText.styleTextTitleHome),
           ),
           Expanded(
             child: Center(
               child: Text(
-                'The feature is upgrading',
+                S.of(context).upgrading,
                 style: StyleText.styleTextCategory,
                 textAlign: TextAlign.center,
               ),

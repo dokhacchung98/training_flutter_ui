@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:training_flutter_ui/common/app_image.dart';
+import 'package:training_flutter_ui/common/color_constant.dart';
 import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/controllers/home_controller.dart';
+import 'package:training_flutter_ui/generated/l10n.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 import 'package:training_flutter_ui/ui/components/item_generes.dart';
@@ -10,7 +12,10 @@ import 'package:training_flutter_ui/ui/screen/home_screen/list_most_popular_widg
 import 'package:training_flutter_ui/ui/screen/home_screen/list_upcoming_widget.dart';
 
 class HomeScreen extends GetWidget<HomeController> {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final HomeController _homeController =
+      Get.put<HomeController>(HomeController());
 
   _showDialog(String mes) {
     AppController _appController = Get.find<AppController>();
@@ -38,10 +43,10 @@ class HomeScreen extends GetWidget<HomeController> {
                     children: [
                       Expanded(
                         child: RichText(
-                          text: const TextSpan(
-                            text: '  Hello, ',
+                          text: TextSpan(
+                            text: '  ${S.of(context).home_hello}, ',
                             style: StyleText.styleTextHello,
-                            children: [
+                            children: const [
                               TextSpan(
                                   text: 'Jane!',
                                   style: StyleText.styleTextUserName)
@@ -77,12 +82,12 @@ class HomeScreen extends GetWidget<HomeController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Image.asset(
-                          AppImage.iconSearch,
-                          width: 20,
-                          height: 20,
+                      const Padding(
+                        padding: EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.search,
+                          size: 24,
+                          color: ColorConstant.colorWhite50,
                         ),
                       ),
                       Expanded(
@@ -92,9 +97,9 @@ class HomeScreen extends GetWidget<HomeController> {
                             textInputAction: TextInputAction.search,
                             onSubmitted: _onSearch,
                             style: StyleText.styleTextSearch,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Search',
+                                hintText: S.of(context).home_search,
                                 hintStyle: StyleText.styleTextSearchHint),
                           ),
                         ),
@@ -117,11 +122,11 @@ class HomeScreen extends GetWidget<HomeController> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding:
-                      EdgeInsets.only(left: 42, right: 42, top: 16, bottom: 12),
-                  child:
-                      Text('Most popular', style: StyleText.styleTextTitleHome),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 42, right: 42, top: 16, bottom: 12),
+                  child: Text(S.of(context).home_popular,
+                      style: StyleText.styleTextTitleHome),
                 ),
                 const ListMostPopularWidget(),
                 const SizedBox(height: 12),
@@ -131,18 +136,24 @@ class HomeScreen extends GetWidget<HomeController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ItemGeneres(icon: AppImage.imgGeneres, title: "Genres"),
-                      ItemGeneres(icon: AppImage.imgTV, title: "TV Series"),
-                      ItemGeneres(icon: AppImage.imgMovie, title: "Movies"),
                       ItemGeneres(
-                          icon: AppImage.imgTheatre, title: "In Theatre"),
+                          icon: AppImage.imgGeneres,
+                          title: S.of(context).home_genres),
+                      ItemGeneres(
+                          icon: AppImage.imgTV, title: S.of(context).home_tv),
+                      ItemGeneres(
+                          icon: AppImage.imgMovie,
+                          title: S.of(context).home_movies),
+                      ItemGeneres(
+                          icon: AppImage.imgTheatre,
+                          title: S.of(context).home_theatre),
                     ],
                   ),
                 ),
-                const Padding(
-                  padding:
-                      EdgeInsets.only(left: 42, right: 42, top: 20, bottom: 12),
-                  child: Text('Upcoming releases',
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 42, right: 42, top: 20, bottom: 12),
+                  child: Text(S.of(context).home_release,
                       style: StyleText.styleTextTitleHome),
                 ),
                 const ListUpcomingWidget(),

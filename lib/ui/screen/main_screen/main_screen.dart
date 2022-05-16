@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:training_flutter_ui/common/app_image.dart';
 import 'package:training_flutter_ui/common/color_constant.dart';
+import 'package:training_flutter_ui/controllers/app_controller.dart';
 import 'package:training_flutter_ui/style/style_gradient.dart';
 import 'package:training_flutter_ui/style/style_text.dart';
 import 'package:training_flutter_ui/ui/components/my_scaffold.dart';
@@ -11,6 +13,8 @@ import 'package:training_flutter_ui/ui/screen/shuffle_screen/shuffle_screen.dart
 import 'package:training_flutter_ui/ui/screen/ticket_screen/ticket_screen.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -22,6 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   final TicketScreen _ticketScreen = const TicketScreen();
   final AccountScreen _accountScreen = const AccountScreen();
   final ShuffleScreen _shuffleScreen = const ShuffleScreen();
+  final _ = Get.put<AppController>(AppController());
+
   _onItemTapped(int page) {
     setState(() {
       _selectedIndex = page;
